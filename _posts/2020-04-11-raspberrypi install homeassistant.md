@@ -40,7 +40,7 @@ cd homeassistant
 ```shell
 source bin/activate
 ```
-（退出虚拟环境：）
+退出虚拟环境：
 ```shell
 deactivate
 ```
@@ -93,7 +93,7 @@ ___
 
 
 
-<h4 align = "right">2020年4月11日</h4>
-<h4 align = "right">于晴朗的仲春之夜</h4>
-<h4 align = "right">Hang</h4>
+<p align = "right">2020年4月11日</p>
+<p align = "right">于晴朗的仲春之夜</p>
+<p align = "right">Hang</p>
 
