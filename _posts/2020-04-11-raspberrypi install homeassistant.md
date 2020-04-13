@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "树莓派4B4G版Raspbian buster10 32位系统安装homeassistant"
+title:  "[homeassistant]树莓派4B4G版Raspbian buster10 32位系统安装homeassistant"
 date:   2020-04-11 21:29:00 +0800--
 categories: [实践探索]
 tags:   [homeassistant, 经验记录]
