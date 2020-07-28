@@ -195,11 +195,12 @@ module: /local/xx.js
 ### 自定义panels
 
 可以用panel_custom组件，开发文档介绍的比较少，同样也要结合后面的实践专门再写一篇panels的博客。
+
+### 参考文献
+
+1.[Home Assistant Frontend](https://developers.home-assistant.io/docs/frontend/)
   
- 
 ___
-
-
 
 
 <p align = "right">2020年4月13日</p>

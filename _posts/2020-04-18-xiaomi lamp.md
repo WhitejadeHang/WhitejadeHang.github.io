@@ -60,7 +60,10 @@ homekit:
 这块还只是个基本的开头，后面能做的工作还很多&#128170;。
 ___
 
+### 参考文献
 
+1.[homeassistant integrations Yeelight](https://www.home-assistant.io/integrations/yeelight/)
+2.[homeassistant integrations HomeKit](https://www.home-assistant.io/integrations/homekit/)
 
 
 <p align = "right">2020年4月18日</p>
