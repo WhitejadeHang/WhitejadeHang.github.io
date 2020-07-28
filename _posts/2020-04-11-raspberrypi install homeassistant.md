@@ -92,6 +92,7 @@ ___
 ### 参考文献
 
 1. [https://www.home-assistant.io/getting-started/](https://www.home-assistant.io/getting-started/)
+
 2. [让终端走代理的几种方法](https://blog.fazero.me/2015/09/15/%E8%AE%A9%E7%BB%88%E7%AB%AF%E8%B5%B0%E4%BB%A3%E7%90%86%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95/)
 
 <p align = "right">2020年4月11日</p>

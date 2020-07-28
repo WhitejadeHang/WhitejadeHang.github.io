@@ -18,12 +18,12 @@ Utility Meter是HomeAssistant的一个组件，可以记录各种表记比如电
 
 在HomeAssistant的configuration.yaml里进行配置：
 
-'''yaml
+```yaml
 utility_meter:
   energy:
     source: sensor.energy_in_kwh
     cycle: monthly
-'''
+```
 
 其中source是一个sensor，cycle可以是小时，日，周，月，季度，年，这两个是必填项。
 
@@ -31,14 +31,14 @@ utility_meter:
 
 这里的source需要是电量等，如果像我采集的是功率，可以用Home Assistant的[integraion](https://www.home-assistant.io/integrations/integration/)组件进行计算转换为电量，我将其转换为了kWh。
 
-'''yaml
+```yaml
 sensor:
   - platform: integration
     source: sensor.current_power
     name: energy_spent
     unit_prefix: k
     round: 2
-'''
+```
 
 ### 服务
 
@@ -46,10 +46,12 @@ sensor:
 
 ### 高级配置
 
+可以同时创建多个表，例如采集不同时间周期，需要配合自动化以及模板实现具体功能。
 
 ### 参考文献
 
 1.[homeassistant integrations Utility Meter](https://www.home-assistant.io/integrations/utility_meter/)
+
 2.[homeassistant integrations Integration - Riemann sum integral](https://www.home-assistant.io/integrations/integration/)
 
   
