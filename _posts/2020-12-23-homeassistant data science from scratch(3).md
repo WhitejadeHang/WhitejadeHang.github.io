@@ -40,7 +40,7 @@ wget https://github.com/dusty-nv/jetson-inference/raw/master/data/images/polar_b
 在启动了docker容器后，仍然可以在宿主机对代码进行编辑，首先要在脚本文件的开头添加：
 
 ```python
-#!/usr/bin/python3
+ #!/usr/bin/python3
 ```
 
 指定脚本使用python3作为解释器。
@@ -67,9 +67,59 @@ opt = parser.parse_args()
 
 我们编的这个简单程序对用户指定的图像进行识别，预期运行是这样的：
 
+```shell
+./my-recognition.py my_image.jpg
+```
+我们的代码解析两个参数，filename和--network，给filename传入my_image.jpg值，就是你想要识别的图片，同时还可以指定--network，就是你想要使用的预训练深度学习网络，这个在我们创建容器镜像的时候已经下载了全部或部分的网络，默认使用的是googlenet网络，至于有哪些可用的深度学习网络模型和如何下载新的网络，可以参考[前面的介绍](https://github.com/dusty-nv/jetson-inference/blob/master/docs/imagenet-console-2.md#downloading-other-classification-models)。
+
+好了，有了命令行解析代码之后，接下来需要将解析出来的filename对应的图片读取出来：
+
+```python
+img = jetson.utils.loadImage(opt.filename)
+```
+
+这个loadImage()函数的返回值是一个```jetson.utils.cudaImage```对象，属性结构如下：
+
+```python
+ <jetson.utils.cudaImage>
+  .ptr      # memory address (not typically used)
+  .size     # size in bytes
+  .shape    # (height,width,channels) tuple
+  .width    # width in pixels
+  .height   # height in pixels
+  .channels # number of color channels
+  .format   # format string
+  .mapped   # true if ZeroCopy
+```
+
+下一步，是加载预训练的模型：
+
+```python
+net = jetson.inference.imageNet(opt.network)
+```
+
+然后，我们就可以用这个模型去做分类了，用到的函数是```imageNet.Classify()```：
+
+```python
+class_idx, confidence = net.Classify(img)
+```
+
+这个函数内部用的是TensorRT实现的，返回值是一个元组，内容分别是类别id和对应的可信度。
+
+最后把结果输出到命令行：
+
+```python
+class_desc = net.GetClassDesc(class_idx)
+print("image is recognized as '{:s}' (class #{:d}) with {:f}% confidence".format(class_desc, class_idx, confidence * 100))
+```
+
+这里第一句是找到id对应的描述，对应的描述全是英文的
+
 #### 运行结果
 
 ### 使用实时摄像头数据流进行识别
+
+接下来的部分，需要使用到一个摄像头，有三种可用的摄像头，分别是
 
 #### 摄像头参数配置
 
