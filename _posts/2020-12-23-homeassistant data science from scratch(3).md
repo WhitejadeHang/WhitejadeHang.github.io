@@ -82,14 +82,14 @@ img = jetson.utils.loadImage(opt.filename)
 
 ```python
  <jetson.utils.cudaImage>
-  .ptr      # memory address (not typically used)
-  .size     # size in bytes
-  .shape    # (height,width,channels) tuple
-  .width    # width in pixels
-  .height   # height in pixels
-  .channels # number of color channels
-  .format   # format string
-  .mapped   # true if ZeroCopy
+  .ptr      # 地址
+  .size     # 图片大小
+  .shape    # (height,width,channels) 图片形状
+  .width    # 像素宽度
+  .height   # 像素高度
+  .channels # 色彩通道数量
+  .format   # 格式
+  .mapped   # 映射数量（没有复本就是0）
 ```
 
 下一步，是加载预训练的模型：
@@ -113,23 +113,91 @@ class_desc = net.GetClassDesc(class_idx)
 print("image is recognized as '{:s}' (class #{:d}) with {:f}% confidence".format(class_desc, class_idx, confidence * 100))
 ```
 
-这里第一句是找到id对应的描述，对应的描述全是英文的
+这里第一句是找到id对应的描述，对应的描述是英文的，从一个ilsvrc12_synset_words.txt文本里加载的，如果需要汉化的话，可以用谷歌翻译处理一下。
 
 #### 运行结果
 
+以上就是一个最简单的图片识别程序，完整代码如下：
+
+```python
+ #!/usr/bin/python3
+
+import jetson.inference
+import jetson.utils
+
+import argparse
+
+ # 命令行解析
+parser = argparse.ArgumentParser()
+parser.add_argument("filename", type=str, help="filename of the image to process")
+parser.add_argument("--network", type=str, default="googlenet", help="model to use, can be:  googlenet, resnet-18, ect.")
+args = parser.parse_args()
+
+ # 加载图片
+img = jetson.utils.loadImage(args.filename)
+
+ # 加载识别网络
+net = jetson.inference.imageNet(args.network)
+
+ # 图片分类
+class_idx, confidence = net.Classify(img)
+
+ # 获取图片的描述
+class_desc = net.GetClassDesc(class_idx)
+
+ # 打印结果
+print("image is recognized as '{:s}' (class #{:d}) with {:f}% confidence".format(class_desc, class_idx, confidence * 100))
+```
+接下来可以用：
+
+```shell
+./my-recognition.py polar_bear.jpg
+```
+来看看程序执行结果：
+
 ### 使用实时摄像头数据流进行识别
 
-接下来的部分，需要使用到一个摄像头，有三种可用的摄像头，分别是
+接下来的部分，需要使用到一个摄像头，有三种可用的摄像头，分别是MIPI CSI摄像头（树莓派那种），V4L2摄像头（USB那种）还有网络摄像头（通过IP配置）。
+
+我自己用的是配置最简单的USB摄像头，其他种类的这里就不介绍如何配置了。
+
+USB摄像头使用的是V4L2协议，在linux下将被识别为/dev/文件夹下的一个文件，通常叫video0或video1，可以在插入摄像头后使用ls查看一下有没有。
 
 #### 摄像头参数配置
 
+摄像头存在的话，可以在容器里用video-viewer查看，以下4条命令都可以调用这个摄像头：
+
+```shell
+video-viewer v4l2:///dev/video0                 # /dev/video0 可以替换为 /dev/video1之类的.
+video-viewer /dev/video0                        # 去掉开头的 v4l2:// protocol 协议也可以
+video-viewer /dev/video0 output.mp4             # 输出保存为 MP4 文件 (默认为H.264格式)
+video-viewer /dev/video0 rtp://<remote-ip>:1234 # 讲结果广播到远程 <remote-ip>
+```
+
+可以指定视频的宽度、高度、编码方式，像这样：
+
+```shell
+video-viewer --input-width=1920 --input-height=1080 --input-codec=h264 /dev/video0
+```
+
 #### 识别结果
 
-### 参考文献
+有了摄像头之后就可以用：
 
-[1]https://github.com/dusty-nv/jetson-inference/blob/master/docs/aux-docker.md
+```shell
+./imagenet.py /dev/video0
+```
 
-[2]https://github.com/dusty-nv/jetson-inference/blob/master/docs/imagenet-console-2.md
+这样的命令来调用图像识别程序了，也可以：
+
+```shell
+./imagenet.py /dev/video0 output.mp4
+```
+
+把识别的视频保存起来。
+
+以上就是英伟达Jetson系列图像识别的简单教程，后面我还会继续完成这个系列教程的目标检测和图像分割部分。另外就是最近在学习Docker和Kubernetes，后续会用容器技术在这个Jetson Xavier NX上开展正式的电力数据分析。
+
 ___
 
 
