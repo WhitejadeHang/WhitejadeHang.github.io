@@ -153,7 +153,15 @@ print("image is recognized as '{:s}' (class #{:d}) with {:f}% confidence".format
 ```shell
 ./my-recognition.py polar_bear.jpg
 ```
-来看看程序执行结果：
+来看看程序执行结果，我这里用这条命令出错了，而改用：
+
+```shell
+python3 my-recognition.py polar_bear.jpg
+```
+
+则成功输出了结果：
+
+![识别结果](/images/20201223/recongres.png)
 
 ### 使用实时摄像头数据流进行识别
 
@@ -180,21 +188,31 @@ video-viewer /dev/video0 rtp://<remote-ip>:1234 # 讲结果广播到远程 <remo
 video-viewer --input-width=1920 --input-height=1080 --input-codec=h264 /dev/video0
 ```
 
+当我准备用：```./imagenet.py /dev/video0```执行的时候却出了问题，使用：
+
+```shell
+v4l2-ctl --device=/dev/video0 --list-formats-ext
+```
+
+查看发现，原来我这个摄像头是YUYV格式的，程序没有支持，修改了各种参数都没成功。好在我还有一个安卓手机，果断安装ip摄像机，然后按照app提示，输出h.264编码的视屏流：
+
+```
+./imagenet --input-codec=h264 rtsp://your.ip.address.and:port/h264_pcm.sdp
+```
+
 #### 识别结果
 
-有了摄像头之后就可以用：
+识别的效果如图：
+
+![liveres](/images/20201223/liveres.png)
+
+可以尝试修改一下运行参数，如指定视屏的大小，还有调低帧率（30帧结果就闪得太快了），还可以将结果输出：
 
 ```shell
-./imagenet.py /dev/video0
+./imagenet --input-width=720 --input-height=480 --input-codec=h264 --input-rate=10 rtsp://your.ip.address.and:port/h264_pcm.sdp output.mp4
 ```
 
-这样的命令来调用图像识别程序了，也可以：
-
-```shell
-./imagenet.py /dev/video0 output.mp4
-```
-
-把识别的视频保存起来。
+还有就是结果没汉化看起来有点难受，后面还要用到的时候我就拉出来谷歌翻译一份。googelnet的动态识别有点不太行，后面得用更好的模型。
 
 以上就是英伟达Jetson系列图像识别的简单教程，后面我还会继续完成这个系列教程的目标检测和图像分割部分。另外就是最近在学习Docker和Kubernetes，后续会用容器技术在这个Jetson Xavier NX上开展正式的电力数据分析。
 
