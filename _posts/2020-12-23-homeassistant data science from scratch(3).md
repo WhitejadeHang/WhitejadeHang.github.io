@@ -194,7 +194,7 @@ video-viewer --input-width=1920 --input-height=1080 --input-codec=h264 /dev/vide
 v4l2-ctl --device=/dev/video0 --list-formats-ext
 ```
 
-查看发现，原来我这个摄像头是YUYV格式的，程序没有支持，修改了各种参数都没成功。好在我还有一个安卓手机，果断安装ip摄像机，然后按照app提示，输出h.264编码的视屏流：
+查看发现，原来我这个摄像头是YUYV格式的，程序没有支持，修改了各种参数都没成功。好在我还有一个安卓手机，果断安装ip摄像机，详细配置方法可以参考[这篇文章](https://www.appinn.com/surveillance-station-with-android-ip-camera/)，然后按照app提示，输出h.264编码的视屏流：
 
 ```
 ./imagenet --input-codec=h264 rtsp://your.ip.address.and:port/h264_pcm.sdp
