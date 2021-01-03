@@ -3,7 +3,7 @@ layout: post
 title:  "[学习笔记]容器简介（2）--创建IBM云Container Registry Namespace"
 date:   2020-12-28 08:58:00 +0800--
 categories: [实践探索]
-tags:   [学习笔记]
+tags:   [学习笔记, cluster&container]
 ---
 
 ### 目标

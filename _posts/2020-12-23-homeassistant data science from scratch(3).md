@@ -1,9 +1,9 @@
 ---
 layout: post
-title:  "[homeassistant]从0开始的homeassistant数据科学（3）--Jetson图像识别编程与视频流的配置"
+title:  "[Deep Learning]深度学习与数据科学（2）--Jetson图像识别编程与视频流的配置"
 date:   2020-12-23 15:11:00 +0800--
 categories: [实践探索]
-tags:   [homeassistant]
+tags:   [经验记录, 深度学习, Jetson]
 ---
 
 ### 自己用Python编写图像识别程序

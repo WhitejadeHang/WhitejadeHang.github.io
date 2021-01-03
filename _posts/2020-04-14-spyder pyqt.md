@@ -3,7 +3,7 @@ layout: post
 title:  "[python]使用spyder + pyqt5开发UI"
 date:   2020-04-14 20:21:00 +0800--
 categories: [实践探索]
-tags:   [经验记录]
+tags:   [经验记录, UI开发]
 ---
 
 我的windows装python环境喜欢用anoconda，是之前在windows装tensorflow的时候觉得anoconda比较方便的缘故。

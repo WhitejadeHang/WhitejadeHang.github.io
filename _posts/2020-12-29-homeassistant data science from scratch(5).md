@@ -1,9 +1,9 @@
 ---
 layout: post
-title:  "[homeassistant]从0开始的homeassistant数据科学（5）--使用DetectNet实现目标检测"
+title:  "[Deep Learning]深度学习与数据科学（4）--使用DetectNet实现目标检测"
 date:   2020-12-29 22:44:00 +0800--
 categories: [实践探索]
-tags:   [homeassistant]
+tags:   [经验记录, 深度学习, Jetson]
 ---
 
 前面我们使用了imagenet模型识别一整张图片，接下来我们要用detectnet进行图像内的多目标检测。我们的输入是一张图，输出是图上的坐标边界（形成一个框），以及对应的物体类型和可信度。
@@ -57,6 +57,6 @@ ___
 
 
 
-<p align = "right">2020年12月23日</p>
+<p align = "right">2020年12月29日</p>
 <p align = "right">Hang</p>
 

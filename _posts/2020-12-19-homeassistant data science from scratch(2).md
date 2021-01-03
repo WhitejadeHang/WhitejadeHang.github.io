@@ -1,9 +1,9 @@
 ---
 layout: post
-title:  "[homeassistant]从0开始的homeassistant数据科学（2）--Jetson AI 入门"
+title:  "[Deep Learning]深度学习与数据科学（1）--Jetson AI 入门"
 date:   2020-12-19 17:10:00 +0800--
 categories: [实践探索]
-tags:   [homeassistant]
+tags:   [经验记录, 深度学习, Jetson]
 ---
 
 ### Hello AI World

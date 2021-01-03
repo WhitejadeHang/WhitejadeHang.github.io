@@ -3,7 +3,7 @@ layout: post
 title:  "[学习笔记]容器简介（1）--容器的作用"
 date:   2020-12-25 15:00:00 +0800--
 categories: [理论研习]
-tags:   [学习笔记]
+tags:   [学习笔记, cluster&container]
 ---
 
 ### 容器简介

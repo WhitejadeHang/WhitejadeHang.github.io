@@ -1,9 +1,9 @@
 ---
 layout: post
-title:  "[homeassistant]从0开始的homeassistant数据科学（1）--配置Jetson Xavier NX"
+title:  "[Deep Learning]深度学习与数据科学（0）--配置Jetson Xavier NX"
 date:   2020-12-13 20:00:00 +0800--
 categories: [实践探索]
-tags:   [homeassistant]
+tags:   [经验记录, 深度学习, Jetson]
 ---
 
 ### 前言

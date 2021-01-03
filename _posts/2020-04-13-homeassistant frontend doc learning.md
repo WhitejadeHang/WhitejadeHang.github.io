@@ -3,7 +3,7 @@ layout: post
 title:  "[homeassistant]homeassistant前端开发文档学习笔记"
 date:   2020-04-13 15:31:00 +0800--
 categories: [理论研习]
-tags:   [homeassistant]
+tags:   [homeassistant, UI开发]
 ---
 
 ![homeassistant前端开发文档](/images/20200413/homeassistantfrontend.png)

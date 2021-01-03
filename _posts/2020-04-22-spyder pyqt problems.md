@@ -3,7 +3,7 @@ layout: post
 title:  "[python]使用spyder + pyqt5开发UI的问题整理"
 date:   2020-04-22 10:58:00 +0800--
 categories: [实践探索]
-tags:   [经验记录]
+tags:   [经验记录, UI开发]
 ---
 
 ## 程序只能运行成功一次
