@@ -3,7 +3,7 @@ layout: post
 title:  "[homeassistant]从0开始的homeassistant数据科学（0）--相关组件"
 date:   2020-08-03 14:06:00 +0800--
 categories: [实践探索]
-tags:   [homeassistant]
+tags:   [homeassistant,data science]
 ---
 
 ### 前言
